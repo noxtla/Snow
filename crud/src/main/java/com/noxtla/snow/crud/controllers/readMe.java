@@ -1,14 +1,10 @@
 package com.noxtla.snow.crud.controllers;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.noxtla.snow.crud.models.LugarNacimiento;
 
 public class readMe {
+
+    ///TODO
     /*Recuerda documentar los EndPoisnta en yaml
     tienes el  openApi en desktop/Snow*/ 
 
