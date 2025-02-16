@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.noxtla.snow.crud.models.LugarNacimiento;
-import com.noxtla.snow.crud.services.Interfaces.ILugarDeNacimientoService;
+import com.noxtla.snow.crud.models.BirthPlace;
+import com.noxtla.snow.crud.services.Interfaces.IBirthPlaceService;
 import com.noxtla.snow.crud.utils.ValidationUtils;
 
 import jakarta.validation.Valid;
@@ -28,24 +27,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
-@RequestMapping("api/lugarNacimiento")
-public class LugarNacimientoController {
+@RequestMapping("api/birthPlace")
+public class BirthPlaceController {
 
     @Autowired
-    ILugarDeNacimientoService lugarDeNacimientoService;
+    IBirthPlaceService birthPlaceService;
 
     @Autowired
     private ValidationUtils validationUtils;
 
 
     @GetMapping("/listAll")
-    public List<LugarNacimiento> listLugarNacimiento() {
-        return lugarDeNacimientoService.findAll();
+    public List<BirthPlace> listLugarNacimiento() {
+        return birthPlaceService.findAll();
     }
     
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@Valid @RequestBody LugarNacimiento lugarNacimiento, BindingResult result,
+    public ResponseEntity<?> update(@Valid @RequestBody BirthPlace lugarNacimiento, BindingResult result,
             @PathVariable Long id,
             @RequestParam(defaultValue = "false") boolean actualizarCiudad,
             @RequestParam(defaultValue = "false") boolean actualizarEstado,
@@ -55,7 +54,7 @@ public class LugarNacimientoController {
             return validationUtils.validate(result);
         }
 
-        Optional<LugarNacimiento> lugarNacimientoOptional = lugarDeNacimientoService.update(id, lugarNacimiento,
+        Optional<BirthPlace> lugarNacimientoOptional = birthPlaceService.update(id, lugarNacimiento,
                 actualizarCiudad, actualizarEstado, actualizarPais);
 
         if (lugarNacimientoOptional.isPresent()) {
@@ -68,7 +67,7 @@ public class LugarNacimientoController {
     @GetMapping("/{id}")
     public ResponseEntity<?> findById (@PathVariable Long id){
 
-        Optional<LugarNacimiento> lugarNacimienOptional = lugarDeNacimientoService.findById(id);
+        Optional<BirthPlace> lugarNacimienOptional = birthPlaceService.findById(id);
         if(lugarNacimienOptional.isPresent()){
             return ResponseEntity.ok(lugarNacimienOptional.orElseThrow());
         }
@@ -76,21 +75,21 @@ public class LugarNacimientoController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@Valid @RequestBody LugarNacimiento lugarNacimiento, BindingResult result) {
+    public ResponseEntity<?> create(@Valid @RequestBody BirthPlace lugarNacimiento, BindingResult result) {
 
-        System.out.println("Recibido: " + lugarNacimiento.getCiudad() + ", " + lugarNacimiento.getEstado() + ", " + lugarNacimiento.getPais());
+        System.out.println("Recibido: " + lugarNacimiento.getCity() + ", " + lugarNacimiento.getState() + ", " + lugarNacimiento.getCountry());
 
         if (result.hasFieldErrors()) {
             return validationUtils.validate(result);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(lugarDeNacimientoService.save(lugarNacimiento));
+        return ResponseEntity.status(HttpStatus.CREATED).body(birthPlaceService.save(lugarNacimiento));
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
 
-        Optional<LugarNacimiento> lugarNacimientoOptional = lugarDeNacimientoService.delete(id);
+        Optional<BirthPlace> lugarNacimientoOptional = birthPlaceService.delete(id);
 
         if (lugarNacimientoOptional.isPresent()) {
             return ResponseEntity.ok(lugarNacimientoOptional.orElseThrow());
