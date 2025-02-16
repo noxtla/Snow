@@ -10,8 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.noxtla.snow.crud.models.EstadoCivil;
-import com.noxtla.snow.crud.services.Interfaces.IEstadoCivilService;
+import com.noxtla.snow.crud.models.MaritalStatus;
+import com.noxtla.snow.crud.services.Interfaces.IMaritalStatusService;
 import com.noxtla.snow.crud.utils.ValidationUtils;
 
 import jakarta.validation.Valid;
@@ -24,24 +24,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping("api/estadoCivil")
-public class EstadoCivilController {
+@RequestMapping("api/maritalStatus")
+public class MaritalStatusController {
 
     @Autowired
-    private IEstadoCivilService estadoCivilService;
+    private IMaritalStatusService maritalSatatusService;
 
     @Autowired
     private ValidationUtils validationUtils;
 
     @GetMapping("/listAll")
-    public List<EstadoCivil> listEstadoCivil() {
-        return estadoCivilService.findAll();
+    public List<MaritalStatus> listEstadoCivil() {
+        return maritalSatatusService.findAll();
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) {
-        Optional<EstadoCivil> productOptional = estadoCivilService.findById(id);
+        Optional<MaritalStatus> productOptional = maritalSatatusService.findById(id);
 
         if (productOptional.isPresent()) {
             return ResponseEntity.ok(productOptional.orElseThrow());
@@ -50,20 +50,20 @@ public class EstadoCivilController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@Valid @RequestBody EstadoCivil estadoCivil, BindingResult result) {
+    public ResponseEntity<?> create(@Valid @RequestBody MaritalStatus estadoCivil, BindingResult result) {
         if (result.hasFieldErrors()) {
             return validationUtils.validate(result);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(estadoCivilService.save(estadoCivil));
+        return ResponseEntity.status(HttpStatus.CREATED).body(maritalSatatusService.save(estadoCivil));
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity <?> update (@Valid @RequestBody EstadoCivil estadoCivil, BindingResult result, @PathVariable Long id){
+    public ResponseEntity <?> update (@Valid @RequestBody MaritalStatus estadoCivil, BindingResult result, @PathVariable Long id){
         if (result.hasFieldErrors()) {
             return validationUtils.validate(result);
         }
-        Optional <EstadoCivil> estadoCivilOptional = estadoCivilService.update(id, estadoCivil);
+        Optional <MaritalStatus> estadoCivilOptional = maritalSatatusService.update(id, estadoCivil);
         if (estadoCivilOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(estadoCivilOptional.orElseThrow());
         }
@@ -74,10 +74,10 @@ public class EstadoCivilController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
 
-        Optional<EstadoCivil> productOptional = estadoCivilService.delete(id);
+        Optional<MaritalStatus> maritalStatusOptional = maritalSatatusService.delete(id);
 
-        if (productOptional.isPresent()) {
-            return ResponseEntity.ok(productOptional.orElseThrow());
+        if (maritalStatusOptional.isPresent()) {
+            return ResponseEntity.ok(maritalStatusOptional.orElseThrow());
         }
         return ResponseEntity.notFound().build();
     }
