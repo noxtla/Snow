@@ -56,9 +56,7 @@ public class MaritalStatusServiceImpl implements IMaritalStatusService{
 
             estadoCivilDB.setDescription_marital_status(estadoCivil.getDescription_marital_status());
             return Optional.of(maritalSatatusRepository.save(estadoCivilDB));
-
         }
-
     return estadoCivilOptional;
     }
 

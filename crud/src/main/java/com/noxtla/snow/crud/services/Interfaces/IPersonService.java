@@ -7,8 +7,21 @@ import com.noxtla.snow.crud.models.Person;
 
 public interface IPersonService {
     Person save (Person estadoCivil);
-    Optional <Person> update (Long id, Person estadoCivil);
+
+    Optional <Person> update (
+        Long id, 
+        Person person, 
+        boolean actualizarNombre, 
+        boolean actualizarTelefono,
+        boolean actualizarFechaNacimiento, 
+        boolean actualizarGenero,
+        boolean actualizarEstadoCivil,
+        boolean actualizarLugarNacimiento);
+
     List<Person> findAll();
     Optional <Person> findById(Long id);
     Optional<Person> delete(Long id);
 }
+
+
+
