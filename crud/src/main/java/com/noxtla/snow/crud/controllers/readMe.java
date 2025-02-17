@@ -3,6 +3,10 @@ package com.noxtla.snow.crud.controllers;
 
 
 public class readMe {
+    /*
+    Nos falta terminar persona
+    estamos en la rama de genre-person
+    */
 
     ///TODO
     /*Recuerda documentar los EndPoisnta en yaml
