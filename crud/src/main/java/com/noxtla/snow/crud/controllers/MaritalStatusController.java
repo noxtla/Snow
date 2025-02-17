@@ -55,7 +55,6 @@ public class MaritalStatusController {
             return validationUtils.validate(result);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(maritalSatatusService.save(estadoCivil));
-
     }
 
     @PutMapping("/{id}")

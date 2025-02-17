@@ -12,7 +12,7 @@ import com.noxtla.snow.crud.repositories.IBirthPlaceRepository;
 import com.noxtla.snow.crud.services.Interfaces.IBirthPlaceService;
 
 @Service
-public class BirthPlaceService implements IBirthPlaceService {
+public class BirthPlaceServiceImpl implements IBirthPlaceService {
 
     @Autowired
     private IBirthPlaceRepository lugarNacimientoRepository;
