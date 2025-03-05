@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.noxtla.snow.crud.DTO.PersonDTO;
 import com.noxtla.snow.crud.models.Person;
 import com.noxtla.snow.crud.repositories.IPersonRepository;
 import com.noxtla.snow.crud.services.Interfaces.IPersonService;
@@ -20,6 +21,12 @@ public class PersonServiceImpl implements IPersonService {
     public Person save(Person persona) {
         return personRepository.save(persona);
     }
+
+    @Override
+    public List<PersonDTO> findAllPersonDTOs() {
+        return personRepository.findAllPersonDTOs();
+    }
+
 
     @Override
     public Optional<Person> update(Long id, Person person, boolean actualizarNombre, boolean actualizarTelefono,

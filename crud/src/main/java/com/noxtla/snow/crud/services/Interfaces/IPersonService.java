@@ -3,6 +3,7 @@ package com.noxtla.snow.crud.services.Interfaces;
 import java.util.List;
 import java.util.Optional;
 
+import com.noxtla.snow.crud.DTO.PersonDTO;
 import com.noxtla.snow.crud.models.Person;
 
 public interface IPersonService {
@@ -21,6 +22,7 @@ public interface IPersonService {
     List<Person> findAll();
     Optional <Person> findById(Long id);
     Optional<Person> delete(Long id);
+    List<PersonDTO> findAllPersonDTOs();
 }
 
 
