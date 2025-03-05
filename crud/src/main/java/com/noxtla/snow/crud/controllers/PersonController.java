@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.noxtla.snow.crud.DTO.PersonDTO;
 import com.noxtla.snow.crud.models.Person;
 import com.noxtla.snow.crud.services.Interfaces.IPersonService;
 import com.noxtla.snow.crud.utils.ValidationUtils;
@@ -32,6 +33,11 @@ public class PersonController {
 
     @Autowired
     private ValidationUtils validationUtils;
+
+    @GetMapping("/listNames")
+    public List<PersonDTO> listNames() {
+        return personaService.findAllPersonDTOs();
+    }
 
     @GetMapping("/listAll")
     public List<Person> listEstadoCivil() {
