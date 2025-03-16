@@ -1,5 +1,5 @@
 # Snow
 Description will comes soon
 
->_[NOTE]
+>_[!NOTE]
 >Nota especial
