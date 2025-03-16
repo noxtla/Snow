@@ -1,6 +1,3 @@
-# Snow
-Description will comes soon
-
 > [!NOTE] Nota especial
 > Aquí va el contenido de la nota especial.
 
